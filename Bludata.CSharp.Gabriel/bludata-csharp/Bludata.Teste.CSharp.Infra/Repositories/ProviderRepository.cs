@@ -1,0 +1,25 @@
+﻿using Bludata.Teste.CSharp.Domain.Entities;
+using Bludata.Teste.CSharp.Domain.Interfaces.Repositories;
+using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+
+namespace Bludata.Teste.CSharp.Infra.Repositories
+{
+    public class ProviderRepository : RepositoryBase<Provider>, IProviderRepository
+    {
+        private readonly Context context;
+
+        public ProviderRepository(Context context) : base (context)
+        {
+            this.context = context;
+        }
+
+        public async Task<IEnumerable<Provider>> GetProviderByCompany()
+        {
+            return context.Set<Provider>().AsNoTracking()
+                .Include(x => x.Company)
+                .Include(x => x.Phone);
+        }
+    }
+}
