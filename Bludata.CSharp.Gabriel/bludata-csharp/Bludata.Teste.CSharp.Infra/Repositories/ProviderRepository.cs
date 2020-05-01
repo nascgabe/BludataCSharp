@@ -19,7 +19,7 @@ namespace Bludata.Teste.CSharp.Infra.Repositories
         {
             return context.Set<Provider>().AsNoTracking()
                 .Include(x => x.CPF)
-                .Include(x => x.CNPJProvider)
+                .Include(x => x.CompanyId)
                 .Include(x => x.Create_At);
         }
     }
