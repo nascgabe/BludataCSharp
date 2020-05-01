@@ -6,6 +6,9 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1- Application", "1- Application", "{805814BB-C61C-486D-8964-F9D11A04C1F1}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2- Domain", "2- Domain", "{F96B9DF2-2EA7-4725-A7E9-A3C5C9EBBCEB}"
+	ProjectSection(SolutionItems) = preProject
+		Bludata.Teste.CSharp.Application\Startup.cs = Bludata.Teste.CSharp.Application\Startup.cs
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3- Infra", "3- Infra", "{594800D0-21A5-47EF-B50E-BFDDFF086248}"
 EndProject

@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace Bludata.Teste.CSharp.Infra.Repositories
 {
-    public class ProviderRepository : RepositoryBase<Provider>, IProviderRepository
+    public class ProviderRepository : GenericRepository<Provider>, IProviderRepository
     {
         private readonly Context context;
 
-        public ProviderRepository(Context context) : base (context)
+        public ProviderRepository(Context context) : base(context)
         {
             this.context = context;
         }
@@ -18,8 +18,9 @@ namespace Bludata.Teste.CSharp.Infra.Repositories
         public async Task<IEnumerable<Provider>> GetProviderByCompany()
         {
             return context.Set<Provider>().AsNoTracking()
-                .Include(x => x.Company)
-                .Include(x => x.Phone);
+                .Include(x => x.CPF)
+                .Include(x => x.CNPJProvider)
+                .Include(x => x.Create_At);
         }
     }
 }

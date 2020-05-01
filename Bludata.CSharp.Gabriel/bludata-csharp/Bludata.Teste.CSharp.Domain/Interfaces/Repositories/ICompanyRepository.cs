@@ -2,7 +2,7 @@
 
 namespace Bludata.Teste.CSharp.Domain.Interfaces.Repositories
 {
-    public interface ICompanyRepository : IRepositoryBase<Company>
+    public interface ICompanyRepository : IGenericRepository<Company>
     {
     }
 }

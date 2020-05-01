@@ -1,12 +1,25 @@
-﻿using System;
+﻿using Bludata.Teste.CSharp.Domain.Enum;
 
 namespace Bludata.Teste.CSharp.Domain.Entities
 {
     public class Company : EntityBase
     {
-        public string CNPJ { get; protected set; }
-        public string Fantasy { get; protected set; }
-        public Guid State_Id { get; protected set; }
-        public virtual State State { get; protected set; }
+        public Company(string cNPJ, string fantasy, State stateId)
+        {
+            CNPJ = cNPJ;
+            Fantasy = fantasy;
+            StateId = stateId;
+        }
+
+        public string CNPJ { get; set; }
+        public string Fantasy { get; set; }
+        public virtual State StateId { get; set; }
+
+        public void Update(string cNPJ, string fantasy, State stateId)
+        {
+            CNPJ = cNPJ;
+            Fantasy = fantasy;
+            StateId = stateId;
+        }
     }
 }

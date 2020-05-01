@@ -1,48 +1,63 @@
-﻿using AutoMapper;
-using Bludata.Teste.CSharp.Application.Models;
-using Bludata.Teste.CSharp.Domain.Entities;
-using Bludata.Teste.CSharp.Domain.Interfaces.Repositories;
+﻿using Bludata.Teste.CSharp.Application.Models;
+using Bludata.Teste.CSharp.Application.Services.ProviderService;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Bludata.Teste.CSharp.Application.Controllers
 {
-    public class ProviderController : ControllerBase
+    [Route("api/[controller]/[Action]")]
+    [ApiController]
+    public class ProviderController : Controller
     {
-        private readonly IProviderRepository _iProvider;
+        private readonly IProviderServices _providerServices;
 
-        public ProviderController(IMapper mapper, IProviderRepository ifornecedor) : base(mapper)
+        public ProviderController(IProviderServices providerService)
         {
-            this._iProvider = ifornecedor;
-        }
-
-        [HttpGet]
-        public async Task<ActionResult> Get()
-        {
-            var fornecedores = await _iProvider.GetProviderByCompany();
-            return Ok(mapper.Map<IEnumerable<ProviderViewModel>>(fornecedores));
+            _providerServices = providerService;
         }
 
         [HttpPost]
-        public async Task<ActionResult> Post([FromBody] Provider model)
+        public async Task<IActionResult> Create([FromBody] ProviderModel request)
         {
-            await _iProvider.SaveAsync(model);
-            return Ok();
+            await _providerServices.Create(request);
+            return NoContent();
         }
 
         [HttpPut]
-        public async Task<ActionResult> Put([FromBody] Provider model)
+        [Route("{id1}")]
+        public async Task<IActionResult> Update([FromRoute] Guid id, [FromBody] ProviderModel request)
         {
-            await _iProvider.UpdateAsync(model);
-            return Ok();
+            await _providerServices.Update(id, request);
+            return NoContent();
         }
 
         [HttpDelete]
-        public async Task<ActionResult> Delete([FromBody] Provider model)
+        [Route("{id1}")]
+        public async Task<IActionResult> Delete([FromRoute] Guid id)
         {
-            await _iProvider.DeleteAsync(model);
-            return Ok();
+            await _providerServices.Delete(id);
+            return NoContent();
+        }
+
+        [HttpGet]
+        [Route("{id1}")]
+        public async Task<ProviderModel> GetById([FromRoute] Guid id)
+        {
+            return await _providerServices.GetById(id);
+        }
+
+        [HttpGet]
+        public async Task<IEnumerable<ProviderModel>> GetProviderByCompany()
+        {
+            return await _providerServices.GetProviderByCompany();
+        }
+
+        [HttpGet]
+        public async Task<IList<ProviderModel>> GetAll()
+        {
+            return await _providerServices.GetAll();
         }
     }
 }

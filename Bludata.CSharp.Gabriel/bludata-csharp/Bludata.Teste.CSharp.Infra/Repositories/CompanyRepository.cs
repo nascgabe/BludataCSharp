@@ -3,9 +3,9 @@ using Bludata.Teste.CSharp.Domain.Interfaces.Repositories;
 
 namespace Bludata.Teste.CSharp.Infra.Repositories
 {
-    public class CompanyRepository : RepositoryBase<Company>, ICompanyRepository
+    public class CompanyRepository : GenericRepository<Company>, ICompanyRepository
     {
-        public CompanyRepository(Context context) : base (context)
+        public CompanyRepository(Context dbContext) : base(dbContext)
         {
         }
     }

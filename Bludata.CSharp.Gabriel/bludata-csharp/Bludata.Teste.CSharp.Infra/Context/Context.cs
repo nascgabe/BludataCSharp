@@ -3,7 +3,7 @@
 namespace Bludata.Teste.CSharp.Infra
 {
     public class Context : DbContext
-    {      
+    {
         public Context(DbContextOptions options)
             : base(options)
         {
