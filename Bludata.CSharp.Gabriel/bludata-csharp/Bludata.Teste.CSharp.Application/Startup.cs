@@ -22,7 +22,7 @@ namespace Bludata.Teste.CSharp.Application
         {
             services.Configure<GzipCompressionProviderOptions>(options => options.Level = System.IO.Compression.CompressionLevel.Optimal);
 
-            services.AddDbContext<Context>(opt => opt.UseSqlServer(Configuration.GetConnectionString("EstacionamentoConnectionString")));
+            services.AddDbContext<Context>(opt => opt.UseSqlServer(Configuration.GetConnectionString("BludataConnectionString")));
             services.AddDependecyInjection();
             services.AddResponseCompression();
             services.AddMvc()
